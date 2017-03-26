@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models.ad_account import AdAccount
+from ad_account.models import AdAccount
 
 # Register your models here.
 admin.site.register(AdAccount)
