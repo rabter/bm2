@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from business_manager.models import BusinessManager
 from user.models import User
+from django.contrib import admin
 
 class AdAccount(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
@@ -15,6 +16,9 @@ class AdAccount(models.Model):
 
     class Meta:
         db_table = "ad_accounts"
+
+class AdAccountAdmin(admin.ModelAdmin):
+    list_display = ('name', 'currency', 'timezone')
 
 class AdAccountBusinessManagerJoinTable(models.Model):
     USER_ACCOUNT_ROLE_ADMIN = 3
@@ -34,6 +38,9 @@ class AdAccountBusinessManagerJoinTable(models.Model):
         db_table = "ad_accounts_business_managers"
         unique_together = (("ad_account", "business_manager"),)
 
+class AdAccountBusinessManagerJoinTableAdmin(admin.ModelAdmin):
+    list_display = ('ad_account', 'business_manager', 'owned_by', 'roles_given')
+
 class AdAccountUserJoinTable(models.Model):
     USER_ACCOUNT_ROLE_ADMIN = 3
     USER_ACCOUNT_ROLE_ADVERTISER = 2
@@ -50,3 +57,9 @@ class AdAccountUserJoinTable(models.Model):
     class Meta:
         db_table = "ad_accounts_users"
         unique_together = (("ad_account", "user"),)
+
+class AdAccountUserJoinTableAdmin(admin.ModelAdmin):
+    list_display = ('ad_account', 'user', 'current_role', 'user_firstname')
+
+    def user_firstname(self, obj):
+        return obj.user.firstname

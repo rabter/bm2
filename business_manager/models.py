@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 from user.models import User
+
 
 class BusinessManager(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
@@ -14,6 +16,9 @@ class BusinessManager(models.Model):
 
     class Meta:
         db_table = "business_managers"
+
+class BusinessManagerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'primary_page', 'account_limit_count')
 
 class BusinessManagerUserJoinTable(models.Model):
     ADMIN = 'admin'
@@ -30,3 +35,18 @@ class BusinessManagerUserJoinTable(models.Model):
     class Meta:
         db_table = "business_managers_users"
         unique_together = (("business_manager", "user"),)
+
+class BusinessManagerUserJoinTableAdmin(admin.ModelAdmin):
+    list_display = ('getBusinessManagerId', 'getBusiness', 'getUserId', 'getUser', 'business_manager_role')
+
+    def getBusinessManagerId(self, obj):
+        return obj.business_manager.id
+
+    def getUserId(self, obj):
+        return obj.user.id
+
+    def getBusiness(self, obj):
+        return obj.business_manager.name
+
+    def getUser(self, obj):
+        return obj.user.firstname + ' ' + obj.user.lastname

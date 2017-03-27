@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 from django.utils import timezone
 
 class User(models.Model):
@@ -13,3 +14,6 @@ class User(models.Model):
 
     class Meta:
         db_table = "users"
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('firstname', 'lastname', 'email')
