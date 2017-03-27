@@ -14,6 +14,9 @@ class AdAccount(models.Model):
     currency = models.CharField(max_length=50)
     timezone = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = "ad_accounts"
 

@@ -14,6 +14,9 @@ class BusinessManager(models.Model):
     primary_page = models.CharField(max_length=100)
     account_limit_count = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = "business_managers"
 
@@ -35,6 +38,7 @@ class BusinessManagerUserJoinTable(models.Model):
     class Meta:
         db_table = "business_managers_users"
         unique_together = (("business_manager", "user"),)
+
 
 class BusinessManagerUserJoinTableAdmin(admin.ModelAdmin):
     list_display = ('getBusinessManagerId', 'getBusiness', 'getUserId', 'getUser', 'business_manager_role')

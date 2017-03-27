@@ -12,6 +12,9 @@ class User(models.Model):
     lastname = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
 
+    def __str__(self):
+        return '%s %s ' % (self.firstname, self.lastname)
+
     class Meta:
         db_table = "users"
 
