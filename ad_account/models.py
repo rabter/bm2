@@ -17,6 +17,16 @@ class AdAccount(models.Model):
     def __str__(self):
         return self.name
 
+    def getUserAccountRoleString(num):
+        result = "N/A"
+        if num == 1:
+            result = "ANALYST"
+        elif num == 2:
+            result = "ADVERTISER"
+        elif num == 3:
+            result = "ADMIN"
+        
+        return result
     class Meta:
         db_table = "ad_accounts"
 
