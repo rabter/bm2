@@ -4,4 +4,5 @@ from business_manager import views
 
 urlpatterns = [
     url(r'^$', views.BusinessManagerList.as_view()),
+    url(r'^business_info/$', views.PeopleAndAssetList.as_view()),
 ]
