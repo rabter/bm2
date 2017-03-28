@@ -19,4 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('user.urls', namespace="user")),
+    url(r'^business_managers/', include('business_manager.urls', namespace="business_manager")),
+    url(r'^ad_accounts/', include('ad_account.urls', namespace="ad_account")),
 ]
