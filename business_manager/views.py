@@ -55,6 +55,7 @@ class PeopleAndAssetList(APIView):
                     ad_account_dict['name'] = ad_account.name
                     ad_account_dict['currency'] = ad_account.currency
                     ad_account_dict['timezone'] = ad_account.timezone
+                    ad_account_dict['status'] = ad_account.status
 
                     users_of_account = AdAccountUserJoinTable.objects.filter(ad_account_id = business_account.ad_account_id)
                     ad_account_users = []

@@ -13,6 +13,7 @@ class AdAccount(models.Model):
     name = models.CharField(max_length=150)
     currency = models.CharField(max_length=50)
     timezone = models.CharField(max_length=100)
+    status = models.CharField(max_length=30, default="ACTIVE")
 
     def __str__(self):
         return self.name
@@ -25,7 +26,7 @@ class AdAccount(models.Model):
             result = "ADVERTISER"
         elif num == 3:
             result = "ADMIN"
-        
+
         return result
     class Meta:
         db_table = "ad_accounts"
