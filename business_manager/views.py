@@ -57,6 +57,9 @@ class PeopleAndAssetList(APIView):
                     ad_account_dict['timezone'] = ad_account.timezone
                     ad_account_dict['status'] = ad_account.status
 
+                    owned_b = AdAccountBusinessManagerJoinTable.objects.filter(ad_account_id = business_account.ad_account_id, owned_by = 1)
+                    owned_by = BusinessManager.objects.get(pk=owned_b[0].business_manager_id)
+                    ad_account_dict['owned_by'] = owned_by.name
                     users_of_account = AdAccountUserJoinTable.objects.filter(ad_account_id = business_account.ad_account_id)
                     ad_account_users = []
                     for ad_account_user in users_of_account:
